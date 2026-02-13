@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %}404 - Page Not Found{% endblock %}
+
+{% block content %}
+
+<div class="container">
+
+    <section class="hero-section">
+        <div class="hero-content">
+            <h1 class="hero-title">
+                <i class="fas fa-exclamation-triangle"></i>
+                404 - Page Not Found
+            </h1>
+
+            <p class="hero-subtitle">
+                Oops! The page you are looking for does not exist or has been moved.
+            </p>
+
+            <!-- <div style="margin-top: 30px;">
+                <a href="{{ url_for('index') }}" class="btn btn-primary btn-large"  class="fas fa-home"> Go Back Home
+                </a>
+            </div> -->
+        </div>
+    </section>
+
+    <!-- <section class="tips-section" style="text-align: center; margin-top: 40px;">
+        <h2>What You Can Do</h2>
+        <ul class="feature-list" style="display: inline-block; text-align: left;">
+            <li class="fas fa-check"> Check the URL for typos</li>
+            <li class="fas fa-check"> Go back to the homepage</li>
+            <li class="fas fa-check"> Use the navigation menu above</li>
+            <li class="fas fa-check"> Contact support if the issue persists</li>
+        </ul>
+    </section> -->
+
+</div>
+
+{% endblock %}

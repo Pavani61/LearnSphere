@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block title %}500 - Server Error{% endblock %}
+
+{% block content %}
+
+<div class="container">
+
+    <section class="hero-section">
+        <div class="hero-content">
+            <h1 class="hero-title">
+                <i class="fas fa-server"></i>
+                500 - Internal Server Error
+            </h1>
+
+            <p class="hero-subtitle">
+                Something went wrong on our server. We're working to fix it.
+            </p>
+
+            <!-- <div style="margin-top: 30px;">
+                <a href="{{ url_for('index') }}" class="btn btn-primary btn-large">
+                    <i class="fas fa-home"></i> Return to Homepage
+                </a>
+            </div> -->
+        </div>
+    </section>
+
+    <!-- <section class="tips-section" style="text-align: center; margin-top: 40px;">
+        <h2>What Happened?</h2>
+        <ul class="feature-list" style="display: inline-block; text-align: left;">
+            <li><i class="fas fa-check"></i> The server encountered an unexpected condition</li>
+            <li><i class="fas fa-check"></i> This is not your fault</li>
+            <li><i class="fas fa-check"></i> Please try refreshing the page</li>
+            <li><i class="fas fa-check"></i> Contact support if the issue continues</li>
+        </ul>
+    </section> -->
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block title %}Audio Learning - ML Learning Assistant{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <section class="hero-section">
+        <div class="hero-content">
+            <h1 class="hero-title">
+                <i class="fas fa-headphones"></i>
+                Audio Learning
+            </h1>
+            <p class="hero-subtitle">
+                Listen to AI-generated lessons and explanations of Machine Learning concepts anytime, anywhere.
+            </p>
+        </div>
+    </section>
+
+    <section class="audio-section">
+        <h2>Listen to Lessons</h2>
+        <p>Select a topic or enter your own query to generate an audio lesson:</p>
+
+        <form action="{{ url_for('audio_learning') }}" method="POST" class="audio-form">
+            <label for="topic">ML Topic:</label>
+            <input type="text" id="topic" name="topic" placeholder="E.g., Neural Networks, Decision Trees" required>
+
+            <label for="voice">Voice Type:</label>
+            <select id="voice" name="voice">
+                <option value="female">Female</option>
+                <option value="male">Male</option>
+            </select>
+
+            <button type="submit" class="btn btn-primary">
+                <i class="fas fa-play"></i> Generate Audio
+            </button>
+        </form>
+
+        {% if audio_url %}
+        <div class="audio-player">
+            <h3>Generated Audio:</h3>
+            <audio controls>
+                <source src="{{ audio_url }}" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
+        {% endif %}
+    </section>
+
+    <section class="tips-section">
+        <h2>Tips for Audio Learning</h2>
+        <ul class="feature-list">
+            <li><i class="fas fa-check"></i> Listen while coding to reinforce concepts</li>
+            <li><i class="fas fa-check"></i> Replay difficult topics until they make sense</li>
+            <li><i class="fas fa-check"></i> Combine audio lessons with visual diagrams for better understanding</li>
+        </ul>
+    </section>
+</div>
+
+{% endblock %}

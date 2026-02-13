@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+
+{% block title %}Text Explanation - ML Learning Assistant{% endblock %}
+
+{% block content %}
+
+<div class="container">
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-content">
+            <h1 class="hero-title">
+                <i class="fas fa-book"></i>
+                Text Explanations
+            </h1>
+            <p class="hero-subtitle">
+                Get structured, AI-powered explanations of any Machine Learning topic.
+            </p>
+        </div>
+    </section>
+
+    <!-- Form Section -->
+    <section class="explanation-section">
+        <h2>Ask a Machine Learning Topic</h2>
+        <p>Enter a topic below and choose your preferred explanation depth.</p>
+
+        <form action="{{ url_for('text_explanation') }}" method="POST" class="audio-form">
+
+            <label for="topic">ML Topic:</label>
+            <input type="text"
+                   id="topic"
+                   name="topic"
+                   placeholder="E.g., Linear Regression, CNN, Reinforcement Learning"
+                   required>
+
+            <label for="depth">Explanation Depth:</label>
+            <select id="depth" name="depth">
+                <option value="brief">Brief Explanation</option>
+                <option value="detailed">Detailed Explanation</option>
+                <option value="comprehensive">Comprehensive Explanation</option>
+            </select>
+
+            <button type="submit" class="btn btn-primary">
+                <i class="fas fa-paper-plane"></i> Generate Explanation
+            </button>
+
+        </form>
+    </section>
+
+    <!-- Result Section -->
+    {% if explanation %}
+    <section class="result-section">
+        <h2>Generated Explanation</h2>
+
+        <div class="feature-card">
+            <div class="result-content">
+                {{ explanation | safe }}
+            </div>
+        </div>
+    </section>
+    {% endif %}
+
+    <!-- Tips Section -->
+    <section class="tips-section">
+        <h2>Learning Tips</h2>
+        <ul class="feature-list">
+            <li><i class="fas fa-check"></i> Start with brief explanations to understand basics</li>
+            <li><i class="fas fa-check"></i> Move to detailed explanations for deeper clarity</li>
+            <li><i class="fas fa-check"></i> Combine text learning with code examples</li>
+            <li><i class="fas fa-check"></i> Use visual diagrams for complex concepts</li>
+        </ul>
+    </section>
+
+</div>
+<div class="result-section">
+    <div id="explanationResult">
+        {{ result }}
+    </div>
+    <button onclick="copyExplanation()">Copy</button>
+</div>
+
+<script src="{{ url_for('static', filename='/static/text_explanation.js') }}"></script>
+
+
+{% endblock %}

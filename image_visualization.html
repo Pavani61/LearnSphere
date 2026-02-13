@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+
+{% block title %}Image Visualization - ML Learning Assistant{% endblock %}
+
+{% block content %}
+
+<div class="container">
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-content">
+            <h1 class="hero-title">
+                <i class="fas fa-image"></i>
+                Visual Diagrams
+            </h1>
+            <p class="hero-subtitle">
+                Generate AI-powered visual explanations of Machine Learning concepts.
+            </p>
+        </div>
+    </section>
+
+    <!-- Form Section -->
+    <section class="image-section">
+        <h2>Generate ML Diagram</h2>
+        <p>Enter a Machine Learning concept to create a visual diagram.</p>
+
+        <form action="{{ url_for('image_visualization') }}" method="POST" class="audio-form">
+
+            <label for="topic">ML Concept:</label>
+            <input type="text"
+                   id="topic"
+                   name="topic"
+                   placeholder="E.g., Neural Network Architecture"
+                   required>
+
+            <label for="style">Diagram Style:</label>
+            <select id="style" name="style">
+                <option value="technical">Technical Diagram</option>
+                <option value="minimal">Minimal Illustration</option>
+                <option value="detailed">Detailed Infographic</option>
+            </select>
+
+            <button type="submit" class="btn btn-primary">
+                <i class="fas fa-paint-brush"></i> Generate Visualization
+            </button>
+
+        </form>
+    </section>
+
+    <!-- Result Section -->
+    {% if image_url %}
+    <section class="result-section">
+        <h2>Generated Visualization</h2>
+
+        <div class="feature-card image-card">
+
+            <div class="image-toolbar">
+                <a href="{{ image_url }}" download class="btn btn-primary btn-small">
+                    <i class="fas fa-download"></i> Download Image
+                </a>
+            </div>
+
+            <div class="image-container">
+                <img src="{{ image_url }}" alt="Generated ML Diagram">
+            </div>
+
+        </div>
+    </section>
+    {% endif %}
+
+    <!-- Tips Section -->
+    <section class="tips-section">
+        <h2>Visualization Tips</h2>
+        <ul class="feature-list">
+            <li><i class="fas fa-check"></i> Use visuals to understand model architecture</li>
+            <li><i class="fas fa-check"></i> Combine with text explanations</li>
+            <li><i class="fas fa-check"></i> Study data flow in diagrams</li>
+            <li><i class="fas fa-check"></i> Save diagrams for revision</li>
+        </ul>
+    </section>
+
+</div>
+
+{% endblock %}

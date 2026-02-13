@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+
+{% block title %}Code Generation - ML Learning Assistant{% endblock %}
+
+{% block content %}
+
+<div class="container">
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-content">
+            <h1 class="hero-title">
+                <i class="fas fa-code"></i>
+                Code Generation
+            </h1>
+            <p class="hero-subtitle">
+                Generate working Python Machine Learning code with explanations.
+            </p>
+        </div>
+    </section>
+
+    <!-- Form Section -->
+    <section class="code-section">
+        <h2>Generate ML Code</h2>
+        <p>Enter a Machine Learning concept or problem statement below.</p>
+
+        <form action="{{ url_for('code_generation') }}" method="POST" class="audio-form">
+
+            <label for="topic">ML Topic / Problem:</label>
+            <input type="text"
+                   id="topic"
+                   name="topic"
+                   placeholder="E.g., Logistic Regression using sklearn"
+                   required>
+
+            <label for="complexity">Code Level:</label>
+            <select id="complexity" name="complexity">
+                <option value="basic">Basic Example</option>
+                <option value="intermediate">Intermediate Example</option>
+                <option value="advanced">Advanced Implementation</option>
+            </select>
+
+            <button type="submit" class="btn btn-primary">
+                <i class="fas fa-play"></i> Generate Code
+            </button>
+
+        </form>
+    </section>
+
+    <!-- Result Section -->
+    {% if generated_code %}
+    <section class="result-section">
+        <h2>Generated Python Code</h2>
+
+        <div class="feature-card">
+
+            <div class="code-toolbar">
+                <button onclick="copyCode()" class="btn btn-primary btn-small">
+                    <i class="fas fa-copy"></i> Copy Code
+                </button>
+            </div>
+
+            <pre><code id="codeBlock">{{ generated_code }}</code></pre>
+
+        </div>
+    </section>
+    {% endif %}
+
+    <!-- Tips Section -->
+    <section class="tips-section">
+        <h2>Best Practices</h2>
+        <ul class="feature-list">
+            <li><i class="fas fa-check"></i> Understand the concept before running the code</li>
+            <li><i class="fas fa-check"></i> Modify parameters to experiment</li>
+            <li><i class="fas fa-check"></i> Try running in Google Colab</li>
+            <li><i class="fas fa-check"></i> Combine with text explanations</li>
+        </ul>
+    </section>
+
+</div>
+<script src="{{ url_for('static', filename='/static/code_generation.js') }}"></script>
+
+{% endblock %}

@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+
+{% block title %}Settings - ML Learning Assistant{% endblock %}
+
+{% block content %}
+
+<div class="container">
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-content">
+            <h1 class="hero-title">
+                <i class="fas fa-cog"></i>
+                Settings
+            </h1>
+            <p class="hero-subtitle">
+                Configure your API keys and application preferences.
+            </p>
+        </div>
+    </section>
+
+    <!-- API Configuration Section -->
+    <section class="settings-section">
+        <h2>API Configuration</h2>
+        <p>Enter your API keys below. Keys are stored locally and never shared.</p>
+
+        <form action="{{ url_for('settings') }}" method="POST" class="audio-form">
+
+            <label for="gemini_key">Google Gemini API Key:</label>
+            <input type="password"
+                   id="gemini_key"
+                   name="gemini_key"
+                   placeholder="Enter your Gemini API key"
+                   value="{{ gemini_key if gemini_key else '' }}">
+
+            <label for="sd_key">Stable Diffusion API Key:</label>
+            <input type="password"
+                   id="sd_key"
+                   name="sd_key"
+                   placeholder="Enter your Stable Diffusion API key"
+                   value="{{ sd_key if sd_key else '' }}">
+
+            <button type="submit" class="btn btn-primary">
+                <i class="fas fa-save"></i> Save Settings
+            </button>
+
+        </form>
+
+        {% if success %}
+        <div class="success-message">
+            <i class="fas fa-check-circle"></i>
+            Settings saved successfully!
+        </div>
+        {% endif %}
+
+    </section>
+
+    <!-- Preferences Section -->
+    <section class="settings-section">
+        <h2>Learning Preferences</h2>
+
+        <form action="{{ url_for('settings') }}" method="POST" class="audio-form">
+
+            <label for="default_depth">Default Explanation Depth:</label>
+            <select id="default_depth" name="default_depth">
+                <option value="brief">Brief</option>
+                <option value="detailed">Detailed</option>
+                <option value="comprehensive">Comprehensive</option>
+            </select>
+
+            <label for="default_voice">Default Audio Voice:</label>
+            <select id="default_voice" name="default_voice">
+                <option value="female">Female</option>
+                <option value="male">Male</option>
+            </select>
+
+            <button type="submit" class="btn btn-primary">
+                <i class="fas fa-save"></i> Save Preferences
+            </button>
+
+        </form>
+    </section>
+
+    <!-- Security Info -->
+    <section class="settings-section">
+        <h2>Security Information</h2>
+        <ul class="feature-list">
+            <li><i class="fas fa-check"></i> API keys are stored securely</li>
+            <li><i class="fas fa-check"></i> No third-party sharing</li>
+            <li><i class="fas fa-check"></i> You can update or remove keys anytime</li>
+            <li><i class="fas fa-check"></i> All AI requests are processed securely</li>
+        </ul>
+    </section>
+    <!-- <input type="checkbox" id="darkMode">
+<input type="checkbox" id="notifications"> -->
+<button id="resetSettings">Reset Settings</button>
+
+<script src="{{ url_for('static', filename='/static/settings.js') }}"></script>
+
+
+</div>
+
+{% endblock %}
